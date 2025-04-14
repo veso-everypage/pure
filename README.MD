@@ -13,7 +13,7 @@ EveryPage provides a straightforward FastAPI backend and web interface designed 
 *   **PDF Conversion:** Automatically converts input documents to PDF.
 *   **High-Resolution Page Imaging:** Generates 300 DPI PNG images for each page using `pdftoppm`.
 *   **PDF Metadata Extraction:** Extracts basic metadata using `pdfinfo`.
-*   **Dynamic AI Processing:** Processes each page image using Google Gemini 1.5 Flash based on user-provided instructions (constructed via UI or loaded from templates). Supports requesting JSON or plain text output.
+*   **Dynamic AI Processing:** Processes each page image using Google Gemini 2.0 Flash based on user-provided instructions (constructed via UI or loaded from templates). Supports requesting JSON or plain text output.
 *   **Meta Intelligence (Optional Toggle):** Performs an initial pass on the first few pages to generate document context, then uses this context along with the user's prompt for the main processing pass on all pages, potentially improving results for context-dependent tasks. (Increases processing time/cost; skipped for single image inputs).
 *   **Prompt Templates:** Includes pre-defined templates for common tasks (Transcription, Summarization, Translation, Q&A, Table Extraction, Entity Extraction, Invoice Data Extraction) to simplify prompt creation.
 *   **Structured/Text Output:** Aggregates results from all pages into a single JSON object (`AggregatedResult`), with each page containing the data returned by the AI (either a JSON object or plain text).
@@ -422,28 +422,27 @@ The project follows a flat structure for simplicity:
 
 ```
 /
-├── .DS_Store                 # macOS metadata (ignore)
-├── ARCHITECTURE.md           # Detailed architecture description (NEW)
-├── Dockerfile                # Docker configuration (UPDATED)
-├── PLAN.md                   # Refactoring plan (NEW)
-├── README.MD                 # This file (UPDATED)
-├── ai_processor_gemini.py    # Handles Gemini API interaction (NEW)
-├── api_security.py           # API key validation (NEW)
-├── config_loader.py          # Loads environment variables (NEW)
-├── document_converter.py     # Handles LibreOffice conversion (NEW)
-├── external_commands.py      # Runs external processes (NEW)
-├── image_processor.py        # Image encoding (NEW)
-├── job_store.py              # In-memory job state management (NEW)
-├── main_api.py               # FastAPI app entry point (NEW, replaces main.py)
-├── models.py                 # Pydantic models and enums (NEW)
-├── pdf_processor.py          # PDF screenshotting & metadata (NEW)
+├── .DS_Store                 # macOS metadata
+├── ARCHITECTURE.md           # Detailed architecture description 
+├── Dockerfile                # Docker configuration 
+├── PLAN.md                   # Refactoring plan
+├── README.MD                 # Readme
+├── ai_processor_gemini.py    # Handles Gemini API interaction
+├── api_security.py           # API key validation
+├── config_loader.py          # Loads environment variables
+├── document_converter.py     # Handles LibreOffice conversion
+├── external_commands.py      # Runs external processes
+├── image_processor.py        # Image encoding
+├── job_store.py              # In-memory job state management
+├── main_api.py               # FastAPI app entry point
+├── models.py                 # Pydantic models and enums
+├── pdf_processor.py          # PDF screenshotting & metadata
 ├── requirements.txt          # Python dependencies
-├── result_aggregator.py      # Combines page results (NEW)
-# ├── test_client.html          # (REMOVED)
-├── web_app.js                # Frontend JavaScript (NEW)
-├── web_interface.html        # Frontend HTML (NEW)
-├── web_styles.css            # Frontend CSS (NEW)
-└── workflow_orchestrator.py  # Main processing logic coordination (NEW)
+├── result_aggregator.py      # Combines page results
+├── web_app.js                # Frontend JavaScript
+├── web_interface.html        # Frontend HTML
+├── web_styles.css            # Frontend CSS
+└── workflow_orchestrator.py  # Main processing logic coordination
 ```
 
 For a more detailed explanation of the architecture, see `ARCHITECTURE.md`.
