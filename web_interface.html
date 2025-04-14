@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EveryPage Processor</title> <!-- Simplified title -->
+    <!-- Quill CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="web_styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>EveryPage</h1>
+        <p>Process documents with custom AI instructions.</p>
+    </header>
+
+    <main class="main-container">
+        <!-- Left Column: Configuration & Upload -->
+        <div class="column left-column">
+            <section class="card" id="setup-section"> <!-- Renamed and grouped -->
+                <h2>1. Setup</h2>
+                 <div class="form-group">
+                    <label for="api-key-input">API Key:</label>
+                    <div class="api-key-input-group">
+                        <input type="password" id="api-key-input" placeholder="Enter API Key">
+                        <button id="save-api-key-button">Save</button>
+                    </div>
+                    <div id="api-key-status" class="info">
+                         <span id="api-key-hint" style="color: #555;"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card" id="instructions-section"> <!-- Renamed and grouped -->
+                <h2>2. Processing Instructions</h2>
+                 <div class="form-group">
+                    <label for="prompt-template-select">Load Template (Optional):</label>
+                    <select id="prompt-template-select">
+                        <option value="">-- Select a Template --</option>
+                        <option value="transcribe">Transcription (JSON)</option>
+                        <option value="summarize">Summarization (JSON)</option>
+                        <option value="translate_es">Translate to Spanish (JSON)</option>
+                        <option value="translate_zh">Translate to Chinese (JSON)</option>
+                        <option value="qa">Question Answering (JSON)</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                 </div>
+                 <div class="form-group">
+                    <label for="task-input">Task Description:</label>
+                    <p class="info">Describe the main task. Use <code>{page_number}</code> where needed.</p>
+                    <textarea id="task-input" rows="4" placeholder="e.g., 'Summarize the key points', 'Translate the text to Spanish'"></textarea>
+                 </div>
+
+                 <div class="form-group">
+                     <label>Desired Output Format:</label>
+                     <div class="output-options">
+                         <label><input type="radio" name="output_format" value="json" checked> JSON</label>
+                         <label><input type="radio" name="output_format" value="text"> Plain Text</label>
+                     </div>
+                 </div>
+
+                 <div class="form-group" id="output-structure-group"> <!-- Shown only when JSON selected -->
+                     <label for="output-structure-input">Example JSON Structure (Optional):</label>
+                      <p class="info">Guide the AI if requesting specific JSON output.</p>
+                     <textarea id="output-structure-input" rows="5" placeholder="e.g.,&#10;{&#10;  &quot;summary&quot;: &quot;...&quot;,&#10;  &quot;keywords&quot;: [&quot;...&quot;]&#10;}"></textarea>
+                 </div>
+                 <div class="form-group toggle-group">
+                     <label for="meta-toggle">Enable Meta Intelligence:</label>
+                     <label class="switch">
+                         <input type="checkbox" id="meta-toggle" name="use_meta_intelligence">
+                         <span class="slider round"></span>
+                     </label>
+                     <p class="info">Analyzes first few pages for context before applying your main task (slower, higher cost, potentially better results).</p>
+                 </div>
+                  <input type="hidden" id="user-prompt-input" name="user_prompt"> <!-- Hidden input stores the *constructed* prompt -->
+            </section>
+
+             <section class="card" id="upload-section"> <!-- Renamed and grouped -->
+                 <h2>3. Upload Document</h2> <!-- Changed title slightly -->
+                 <form id="upload-form">
+                     <div class="form-group">
+                         <label>Select Document:</label> <!-- Label for the group -->
+                         <div class="file-upload-wrapper">
+                             <button type="button" class="btn-upload-proxy">Choose File</button>
+                             <span id="file-name-display">No file selected.</span>
+                             <input type="file" id="file-input" name="file" required accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.odt,.rtf,image/png,image/jpeg,image/webp,image/gif,image/bmp"> <!-- Added image types -->
+                         </div>
+                     </div>
+                     <button type="submit" id="submit-button" disabled>Upload & Process</button> <!-- Initially disabled -->
+                 </form>
+                 <div id="upload-status"></div>
+             </section>
+        </div>
+
+        <!-- Right Column: Queue & Details -->
+        <div class="column right-column">
+            <section id="job-queue-section">
+                <h2>Job Queue (Recent Jobs)</h2>
+                <button id="refresh-queue-button">Refresh Queue</button>
+                <div id="job-queue-container"> <!-- Renamed container -->
+                    <p>Loading recent jobs...</p>
+                </div>
+            </section>
+
+            <section id="job-details-section">
+                <h2>Job Details</h2>
+                <div id="job-details-container"> <!-- Renamed container -->
+                    <div id="job-details-content">
+                        <p class="placeholder">Select a job from the queue or submit a new one to see details.</p>
+                        <!-- Job details will be rendered here by JS -->
+                    </div>
+                    <div id="download-buttons" style="margin-top: 20px; display: none;"> <!-- Hidden initially -->
+                        <button id="download-json-button">Download Results (JSON)</button>
+                        <button id="download-csv-button" style="margin-left: 10px;">Download Results (CSV)</button>
+                         <!-- PDF Placeholder: <button id="download-pdf-button" style="margin-left: 10px;" disabled>Download Results (PDF - Future)</button> -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>EveryPage Pure v1.0.0</p>
+    </footer>
+
+    <!-- Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <!-- Custom App JS -->
+    <script src="web_app.js"></script>
+</body>
+</html>

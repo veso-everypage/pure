@@ -1,0 +1,26 @@
+services:
+  everypage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - API_KEY=everypage-9d207bf0-10f5-4d8f-a479-22ff5aeff8d1
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - MAX_WORKERS=5
+      - PROCESS_TIMEOUT=60
+    volumes:
+      # Optional: Mount for persistent storage of processed documents
+      - everypage_data:/app/output
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8000/health?api_key=everypage-9d207bf0-10f5-4d8f-a479-22ff5aeff8d1", "||", "exit", "1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  everypage_data:
+    # This creates a named volume for persistent storage

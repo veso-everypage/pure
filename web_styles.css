@@ -1,0 +1,514 @@
+/* web_styles.css - Basic styling for EveryPage Pure interface */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.5; /* Slightly tighter line height */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f7;
+    color: #1d1d1f; /* Use consistent dark text color */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+    background-color: #fff;
+    color: #1d1d1f;
+    padding: 0.8rem 2rem; /* Slightly less padding */
+    text-align: center;
+    border-bottom: 1px solid #d2d2d7;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03); /* Even subtler shadow */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.6rem; /* Further reduced H1 */
+    font-weight: 600;
+}
+header p {
+    margin: 0.2rem 0 0;
+    color: #666; /* Lighter subtitle */
+    font-size: 0.95rem; /* Smaller subtitle */
+}
+
+/* Main container for side-by-side layout */
+.main-container {
+    display: flex;
+    gap: 30px; /* Increased space */
+    padding: 2rem;
+    max-width: 1800px; /* Wider layout */
+    margin: 2rem auto; /* Restore original margin */
+}
+
+.column {
+    flex: 1;
+    min-width: 400px; /* Reduce min-width slightly */
+}
+
+/* Styling for sections as cards (Applied via .column section now) */
+/*
+.card { ... }
+*/
+
+.column section { /* Apply card styles to sections */
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #d2d2d7;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+/* Specific column adjustments if needed */
+.left-column {
+    /* Add styles specific to the left column if necessary */
+}
+
+.right-column {
+     /* Add styles specific to the right column if necessary */
+     display: flex;
+     flex-direction: column; /* Stack sections vertically */
+}
+
+.right-column #job-queue-container,
+.right-column #job-details-container {
+    flex-grow: 1; /* Allow details to grow */
+    overflow-y: auto; /* Add scroll if content overflows */
+    max-height: calc(100vh - 10rem); /* Limit height based on viewport */
+}
+
+/* Remove generic section styling if using .card */
+/*
+section { ... }
+*/
+
+h2 {
+    color: #1d1d1f; /* Darker text */
+    /* border-bottom: 1px solid #dcdcdc; */ /* Cleaner look without border */
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+    font-size: 1.3rem; /* Slightly smaller section titles */
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px; /* Increased margin */
+    font-weight: 500; /* Slightly bolder labels */
+    color: #333;
+    font-size: 0.9rem; /* Slightly smaller labels */
+}
+
+/* Custom File Upload Styling */
+.file-upload-wrapper {
+    position: relative;
+    display: inline-block; /* Or block if you want it full width */
+    margin-top: 5px;
+    margin-bottom: 1rem;
+    width: 100%;
+    border: 1px solid #d2d2d7;
+    border-radius: 5px; /* Match */
+    padding: 8px 12px;
+    background-color: #fff; /* Keep white */
+    box-sizing: border-box;
+    display: flex; /* Use flex to align items */
+    align-items: center;
+}
+
+.file-upload-wrapper input[type="file"] {
+    /* Hide the actual input but keep it accessible */
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.btn-upload-proxy {
+    /* Style this like a button */
+    background-color: #6c757d; /* Grey button */
+    color: white;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    margin-right: 10px; /* Space between button and filename */
+    border: none;
+}
+.btn-upload-proxy:hover {
+    background-color: #5a6268;
+}
+
+#file-name-display {
+    font-size: 0.9rem;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis if filename is too long */
+    flex-grow: 1; /* Allow filename to take remaining space */
+}
+select {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #d2d2d7;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 0.9rem; /* Match label size */
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+    cursor: pointer;
+}
+input[type="password"],
+textarea {
+    display: block;
+    width: 100%;
+    padding: 10px 12px; /* Adjusted padding */
+    margin-bottom: 1rem;
+    border: 1px solid #d2d2d7; /* Softer border */
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.9rem; /* Match label size */
+    background-color: #fff; /* Keep */
+    color: #1d1d1f;
+}
+textarea {
+    min-height: 80px; /* Ensure textareas have decent height */
+    resize: vertical; /* Allow vertical resize */
+    font-family: inherit;
+    line-height: 1.4; /* Improve textarea line height */
+}
+select,
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #007aff; /* Apple blue focus */
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2); /* Thinner focus ring */
+}
+
+button {
+    display: inline-block;
+    background-color: #007aff; /* Apple blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #005ecf; /* Darker blue */
+}
+
+#submit-button { /* Main action button */
+    /* margin-top: 1rem; */ /* Remove top margin for button in form */
+    width: 100%; /* Make button full width in upload section */
+}
+
+#refresh-queue-button {
+    background-color: #6c757d; /* Grey for refresh */
+    margin-bottom: 1rem;
+    width: auto; /* Auto width for refresh button */
+}
+
+#refresh-queue-button:hover {
+    background-color: #5a6268;
+}
+
+#upload-status,
+#job-details p,
+#job-queue p {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #555;
+}
+
+.info {
+    font-size: 0.85rem; /* Smaller info text */
+    color: #666;
+    margin-top: 8px; /* Consistent margin */
+    margin-bottom: 15px;
+}
+
+.api-key-input-group {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    gap: 10px; /* Space between input and button */
+    margin-bottom: 0.5rem; /* Reduce margin below group */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.api-key-input-group label {
+     flex-basis: 100%; /* Label takes full width initially */
+     margin-bottom: 5px;
+}
+
+.api-key-input-group input[type="password"] {
+    flex-grow: 1;
+    width: auto;
+    margin-bottom: 0;
+    background-color: #fff; /* White background for API key input */
+}
+
+.api-key-input-group button {
+    flex-shrink: 0; /* Prevent button from shrinking */
+    padding: 0.6rem 1rem; /* Slightly smaller padding for save button */
+    font-size: 0.9rem;
+    background-color: #6c757d; /* Grey for save button */
+    margin-top: 0;
+}
+.api-key-input-group button:hover {
+     background-color: #5a6268;
+}
+
+#api-key-status {
+    margin-top: 8px; /* Keep */
+    font-weight: 400;
+    flex-basis: 100%;
+    min-height: 1.2em; /* Keep height to prevent jump */
+    color: green; /* Default success color */
+}
+
+
+/* Job Queue Styling */
+.job-item {
+    border: 1px solid #eee;
+    padding: 0.8rem 1rem; /* Slightly less padding */
+    margin-bottom: 0.5rem;
+    background-color: #fff; /* Keep select white */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    border: 1px solid #e8e8e8;
+}
+select {
+     border-radius: 5px;
+     font-size: 0.9rem; /* Match labels */
+     background-color: #fff;
+}
+
+.job-item:hover {
+    background-color: #f5f5f7;
+    border-color: #d2d2d7;
+}
+
+/* Remove Quill Editor Styling */
+
+/* Output Options Styling */
+.output-options label {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: normal;
+    font-size: 0.9rem; /* Match labels */
+    cursor: pointer;
+}
+.output-options input[type="radio"] {
+    margin-right: 5px;
+    width: auto;
+    vertical-align: middle;
+}
+#output-structure-group {
+    margin-top: 1rem;
+    /* Initially hidden, shown by JS */
+    display: none;
+}
+
+/* Styling for code/pre in instructions */
+.config-section code {
+    background-color: #e9ecef;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+}
+.config-section pre { /* Style example JSON in prompt */
+     background-color: #f5f5f7; /* Match input background */
+     padding: 10px;
+     border-radius: 6px;
+     border: 1px solid #d2d2d7;
+     white-space: pre-wrap;
+     word-wrap: break-word;
+     max-height: 150px;
+     overflow-y: auto;
+     font-family: monospace;
+     font-size: 0.85em; /* Keep example JSON small */
+     margin-top: 0.5em;
+     color: #444; /* Keep */
+}
+
+.job-item strong {
+    display: inline-block;
+    /* min-width: auto; */ /* Let browser decide */
+}
+
+.status-created, .status-queued { background-color: #f0f0f0; border-left: 5px solid #ccc; }
+.status-validating, .status-converting { background-color: #eef; border-left: 5px solid #337ab7; }
+.status-processing, .status-aggregating { background-color: #fff8dc; border-left: 5px solid #f0ad4e; } /* Light yellow */
+.status-completed { background-color: #dff0d8; border-left: 5px solid #5cb85c; }
+.status-error { background-color: #f2dede; border-left: 5px solid #d9534f; }
+
+/* Job Details Styling */
+#job-details-content {
+    padding-top: 1rem; /* Add some space above details content */
+}
+#job-details-content h3 { margin-top: 0; }
+#job-details-content h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+#job-details-content h5 {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+#job-details-content h6 { /* Raw response snippet heading */
+     margin-top: 0.5rem;
+     margin-bottom: 0.2rem;
+     font-size: 0.9rem;
+     color: #555;
+     font-weight: normal;
+}
+#job-details-content pre {
+    background-color: #f5f5f7; /* Match input bg */
+    border: 1px solid #d2d2d7;
+    border-radius: 6px;
+    padding: 15px;
+    overflow-x: auto; /* Allow horizontal scroll for long lines */
+    max-height: 500px; /* Increased max height */
+    font-family: monospace;
+    font-size: 0.85rem; /* Make pre text even smaller */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.page-result {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden; /* Ensure content stays within borders */
+}
+.page-header {
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 500; /* Keep */
+    cursor: default; /* No longer collapsible */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.page-content {
+    padding: 12px;
+    display: block; /* Always show content */
+}
+.page-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    font-weight: 500; /* Keep */
+}
+.placeholder { /* Style for placeholder text */
+     color: #777;
+     text-align: center;
+     padding: 2rem;
+}
+#download-buttons button {
+    background-color: #6c757d;
+}
+#download-buttons button:hover {
+     background-color: #555; /* Darker grey hover */
+}
+
+.error-message {
+    color: #d9534f;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    color: #888;
+    font-size: 0.9em;
+    border-top: 1px solid #e5e5ea; /* Lighter footer border */
+}
+/* REMOVE duplicate #output-format-section styles */
+/* Stray brace removed */
+
+/* Toggle Switch CSS */
+.toggle-group {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem; /* Add space above toggle */
+}
+.toggle-group label:first-of-type { /* Target the main label */
+  margin-bottom: 0; /* Remove bottom margin */
+  margin-right: 15px; /* Add space between label and switch */
+  flex-shrink: 0; /* Prevent label from shrinking */
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px; /* Width of the switch */
+  height: 24px; /* Height of the switch */
+  flex-shrink: 0;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; /* Height of the knob */
+  width: 18px; /* Width of the knob */
+  left: 3px; /* Position from left */
+  bottom: 3px; /* Position from bottom */
+  background-color: white;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: #007aff; /* Apple blue when checked */
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px #007aff;
+}
+input:checked + .slider:before {
+  transform: translateX(26px); /* Move knob across */
+}
+.slider.round {
+  border-radius: 24px; /* Make it round */
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+.toggle-group .info {
+    margin-top: 0;
+    margin-left: 15px;
+    margin-bottom: 0;
+    flex-grow: 1;
+}
